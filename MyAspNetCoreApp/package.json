@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0"
+  }
+}
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [ "eslint --fix", "git add" ]
+  }
+}
+
