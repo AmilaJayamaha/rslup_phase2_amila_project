@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyAspNetCoreApp.Models;
+
 
 [Route("api/flights")]
 [ApiController]

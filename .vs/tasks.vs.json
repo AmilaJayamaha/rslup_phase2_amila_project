@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-Controllers",
+      "appliesTo": "MyAspNetCoreApp/Controllers/",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-rslup_phase2_amila_project",
+      "appliesTo": "/",
+      "type": "launch"
+    }
+  ]
+}
