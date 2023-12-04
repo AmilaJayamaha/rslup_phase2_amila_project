@@ -1,24 +1,40 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-[AllowAnonymous]
-[Route("api/auth")]
 [ApiController]
+[Route("api/auth")]
 public class AuthController : ControllerBase
 {
-    [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginRequest loginRequest)
+    private readonly ApplicationDbContext _context;
+
+    public AuthController(ApplicationDbContext context)
     {
-      
-        if (loginRequest.Username == "valid_user" && loginRequest.Password == "valid_password")
+        _context = context;
+    }
+
+    [HttpPost("login")]
+    public ActionResult<LoginResponse> Login(LoginRequest loginRequest)
+    {
+        
+        var user = _context.Users.FirstOrDefault(u => u.UserName == loginRequest.UserName && u.Password == loginRequest.Password);
+
+        if (user == null)
         {
-            var user = new User { Username = "valid_user", Email = "valid_user@example.com" };
-
-            var token = JwtTokenGenerator.GenerateToken("valid_user");
-
-            return Ok(new { user, token });
+            return Unauthorized();
         }
 
-        return Unauthorized(new { message = "Invalid credentials" });
+        var token = GenerateToken(user);
+
+        var loginResponse = new LoginResponse
+        {
+            UserId = user.UserId,
+            UserName = user.UserName,
+            Token = token
+        };
+
+        return loginResponse;
+    }
+
+    private string GenerateToken(User user)
+    {
+       
+        return "dummy_token";
     }
 }
