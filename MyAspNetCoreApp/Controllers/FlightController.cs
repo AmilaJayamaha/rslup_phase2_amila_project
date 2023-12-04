@@ -1,22 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MyAspNetCoreApp.Models;
-
-
+﻿[ApiController]
 [Route("api/flights")]
-[ApiController]
-public class FlightController : ControllerBase
+public class FlightsController : ControllerBase
 {
     [HttpGet]
-    public IActionResult GetFlights()
+    public ActionResult<IEnumerable<Flight>> GetFlights()
     {
        
-        return Ok(flights);
+        return Ok();
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult<Flight> GetFlightById(int id)
+    {
+        
+        return Ok();
     }
 
     [HttpPost]
-    public IActionResult CreateFlight([FromBody] FlightModel flight)
+    public ActionResult<Flight> CreateFlight(Flight flight)
     {
         
-        return CreatedAtAction("GetFlights", new { id = flight.Id }, flight);
+        return Ok();
+    }
+
+    [HttpPut("{id}")]
+    public IActionResult UpdateFlight(int id, Flight updatedFlight)
+    {
+        
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteFlight(int id)
+    {
+        
+        return Ok();
     }
 }

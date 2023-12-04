@@ -1,57 +1,52 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using MyAspNetCoreApp.Models;
-
-
-[Authorize]
-[Route("api/users")]
 [ApiController]
-public class UserController : ControllerBase
+[Route("api/users")]
+public class UsersController : ControllerBase
 {
-    private static List<User> users = new List<User>
+    private readonly ApplicationDbContext _context;
+
+    public UsersController(ApplicationDbContext context)
     {
-        new User { Id = 1, Username = "user1", Email = "user1@example.com" },
-        new User { Id = 2, Username = "user2", Email = "user2@example.com" }
-    };
+        _context = context;
+    }
 
     [HttpGet]
-    public IActionResult GetUsers() => Ok(users);
+    public ActionResult<IEnumerable<User>> GetUsers()
+    {
+        return _context.Users.ToList();
+    }
 
     [HttpGet("{id}")]
-    public IActionResult GetUserById(int id)
+    public ActionResult<User> GetUserById(int id)
     {
-        var user = users.Find(u => u.Id == id);
-
+        var user = _context.Users.Find(id);
         if (user == null)
         {
             return NotFound();
         }
 
-        return Ok(user);
+        return user;
     }
 
     [HttpPost]
-    public IActionResult CreateUser([FromBody] User user)
+    public ActionResult<User> CreateUser(User user)
     {
-        user.Id = users.Count + 1;
-        users.Add(user);
+        _context.Users.Add(user);
+        _context.SaveChanges();
 
-        return CreatedAtAction("GetUserById", new { id = user.Id }, user);
+        return CreatedAtAction(nameof(GetUserById), new { id = user.UserId }, user);
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateUser(int id, [FromBody] User user)
+    public IActionResult UpdateUser(int id, User updatedUser)
     {
-        var existingUser = users.Find(u => u.Id == id);
-
-        if (existingUser == null)
+        var user = _context.Users.Find(id);
+        if (user == null)
         {
             return NotFound();
         }
 
-        existingUser.Username = user.Username;
-        existingUser.Email = user.Email;
+        
+        _context.SaveChanges();
 
         return NoContent();
     }
@@ -59,14 +54,14 @@ public class UserController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult DeleteUser(int id)
     {
-        var user = users.Find(u => u.Id == id);
-
+        var user = _context.Users.Find(id);
         if (user == null)
         {
             return NotFound();
         }
 
-        users.Remove(user);
+        _context.Users.Remove(user);
+        _context.SaveChanges();
 
         return NoContent();
     }

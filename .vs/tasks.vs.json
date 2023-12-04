@@ -10,6 +10,11 @@
       "taskLabel": "task-rslup_phase2_amila_project",
       "appliesTo": "/",
       "type": "launch"
+    },
+    {
+      "taskLabel": "task-rslup_phase2_amila_project",
+      "appliesTo": "/",
+      "type": "launch"
     }
   ]
 }
