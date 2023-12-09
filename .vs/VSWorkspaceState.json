@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MyAspNetCoreApp"
+    "\\MyAspNetCoreApp",
+    "\\MyAspNetCoreApp\\Controllers",
+    "\\MyAspNetCoreApp\\obj",
+    "\\MyAspNetCoreApp\\Properties"
   ],
+  "SelectedNode": "\\MyAspNetCoreApp\\Controllers\\FlightController.cs",
   "PreviewInSolutionExplorer": false
 }
