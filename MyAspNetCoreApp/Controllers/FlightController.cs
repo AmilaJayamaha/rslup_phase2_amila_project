@@ -2,38 +2,71 @@
 [Route("api/flights")]
 public class FlightsController : ControllerBase
 {
+    private readonly ApplicationDbContext _context;
+
+    public FlightsController(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     [HttpGet]
     public ActionResult<IEnumerable<Flight>> GetFlights()
     {
-       
-        return Ok();
+        var flights = _context.Flights.ToList();
+        return Ok(flights);
     }
 
     [HttpGet("{id}")]
     public ActionResult<Flight> GetFlightById(int id)
     {
-        
-        return Ok();
+        var flight = _context.Flights.Find(id);
+        if (flight == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(flight);
     }
 
     [HttpPost]
     public ActionResult<Flight> CreateFlight(Flight flight)
     {
-        
-        return Ok();
+        _context.Flights.Add(flight);
+        _context.SaveChanges();
+
+        return CreatedAtAction(nameof(GetFlightById), new { id = flight.FlightId }, flight);
     }
 
     [HttpPut("{id}")]
     public IActionResult UpdateFlight(int id, Flight updatedFlight)
     {
-        
-        return Ok();
+        var flight = _context.Flights.Find(id);
+        if (flight == null)
+        {
+            return NotFound();
+        }
+
+        flight.FlightNumber = updatedFlight.FlightNumber;
+        flight.DepartureAirport = updatedFlight.DepartureAirport;
+        flight.ArrivalAirport = updatedFlight.ArrivalAirport;
+
+        _context.SaveChanges();
+
+        return NoContent();
     }
 
     [HttpDelete("{id}")]
     public IActionResult DeleteFlight(int id)
     {
-        
-        return Ok();
+        var flight = _context.Flights.Find(id);
+        if (flight == null)
+        {
+            return NotFound();
+        }
+
+        _context.Flights.Remove(flight);
+        _context.SaveChanges();
+
+        return NoContent();
     }
 }
