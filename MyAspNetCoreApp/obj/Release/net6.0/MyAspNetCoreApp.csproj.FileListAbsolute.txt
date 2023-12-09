@@ -1,0 +1,5 @@
+C:\Users\Rasika\Source\Repos\rslup_phase2_amila_project\MyAspNetCoreApp\obj\Release\net6.0\MyAspNetCoreApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rasika\Source\Repos\rslup_phase2_amila_project\MyAspNetCoreApp\obj\Release\net6.0\MyAspNetCoreApp.AssemblyInfoInputs.cache
+C:\Users\Rasika\Source\Repos\rslup_phase2_amila_project\MyAspNetCoreApp\obj\Release\net6.0\MyAspNetCoreApp.AssemblyInfo.cs
+C:\Users\Rasika\Source\Repos\rslup_phase2_amila_project\MyAspNetCoreApp\obj\Release\net6.0\MyAspNetCoreApp.csproj.CoreCompileInputs.cache
+C:\Users\Rasika\Source\Repos\rslup_phase2_amila_project\MyAspNetCoreApp\obj\Release\net6.0\MyAspNetCoreApp.MvcApplicationPartsAssemblyInfo.cache

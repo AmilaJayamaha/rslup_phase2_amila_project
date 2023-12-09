@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\MyAspNetCoreApp",
-    "\\MyAspNetCoreApp\\Controllers",
-    "\\MyAspNetCoreApp\\obj",
-    "\\MyAspNetCoreApp\\Properties"
+    "\\MyAspNetCoreApp\\Controllers"
   ],
-  "SelectedNode": "\\MyAspNetCoreApp\\Controllers\\FlightController.cs",
+  "SelectedNode": "\\MyAspNetCoreApp\\Controllers\\UserController.cs",
   "PreviewInSolutionExplorer": false
 }
