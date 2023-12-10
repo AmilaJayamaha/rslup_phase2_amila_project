@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\MyAspNetCoreApp",
-    "\\MyAspNetCoreApp\\Controllers"
+    "\\MyAspNetCoreApp\\Models"
   ],
-  "SelectedNode": "\\MyAspNetCoreApp\\Controllers\\UserController.cs",
+  "SelectedNode": "\\MyAspNetCoreApp\\Models\\ForgotPasswordRequest.cs",
   "PreviewInSolutionExplorer": false
 }
