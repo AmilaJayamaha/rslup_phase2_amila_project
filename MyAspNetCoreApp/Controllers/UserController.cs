@@ -66,3 +66,31 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 }
+public class UserController : ControllerBase
+{
+    private readonly IEmailService _emailService; 
+
+    public UserController(IEmailService emailService)
+    {
+        _emailService = emailService;
+    }
+
+    [HttpPost("forgotpassword")]
+    public IActionResult ForgotPassword([FromBody] ForgotPasswordRequest request)
+    {
+       
+        var resetLink = "";
+
+        
+        var emailSent = _emailService.SendEmail(request.Email, "Password Reset", $"Click the link to reset your password: {resetLink}");
+
+        if (emailSent)
+        {
+            return Ok("Password reset link sent successfully.");
+        }
+        else
+        {
+            return StatusCode(500, "Failed to send reset link. Please try again later.");
+        }
+    }
+}
